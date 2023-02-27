@@ -1,0 +1,166 @@
+<head>
+	{{ omfHeaders }}
+	<title>Open Modeling Framework</title>
+	<meta charset="utf-8">
+	<link href="{{pathPrefix}}/static/omf.css" type="text/css" rel="stylesheet"/>
+	<link rel="shortcut icon" href="{{pathPrefix}}/static/favicon.ico">
+	<style>
+	/*Styles go here.*/
+	</style>
+	{% if modelStatus == "running" %}<meta http-equiv="refresh" content="5"/>{% endif %}
+	<!-- Library Imports -->
+	<script type="text/javascript" src="{{pathPrefix}}/static/omf.js"></script>
+	<script type="text/javascript" src="{{pathPrefix}}/static/jquery-1.9.1.js"></script>
+	<script src="{{pathPrefix}}/static/highcharts4.src.js"></script>
+	<script src="https://cdn.plot.ly/plotly-1.50.1.min.js"></script>
+	<!-- Data  Imports -->
+	<script>allInputData={% if allInputDataDict %}{{allInputDataDict | tojson}}{% else %}null{% endif %}</script>
+	<script>allOutputData={% if allOutputDataDict %}{{allOutputDataDict | tojson}}{% else %}null{% endif %}</script>
+	<script>modelStatus="{{modelStatus}}"</script>
+	<script>currentUser="{{datastoreNames.get('currentUser','test')}}"</script>
+</head>
+<body onload="init()">
+	<div id="header">
+		<div id="headInnerBlock">
+			<div id="menuLeft">
+				<a style="color:white" href="/">Open Modeling Framework</a> &#187;&nbsp;&nbsp;Model
+				&#8220;<p id="titleText" style="display:inline"></p>&#8221;
+			</div>
+		</div>
+	</div>
+	<p class="reportTitle">Model Input</p>
+	<div id="input" class="content">
+		<form name="inputForm" action="/runModel/" onsubmit="event.preventDefault(); return isFormValid();" method="post">
+			<!-- Required Inputs -->
+			<div class="shortInput">
+				<label>Model Type</label>
+				<input type="text" id="modelType" name="modelType" value="{{modelName}}" readonly/>
+			</div>
+			<div class="shortInput">
+				<label>Model Name</label>
+				<input type="text" id="modelName" name="modelName" pattern="^[\w\s\d\.-]+$" required="required">
+			</div>
+			<div class="shortInput runningInline postRunInline">
+				<label>User</label>
+				<input type="text" id="user" name="user" readonly/>
+			</div>
+			<div class="shortInput runningInline postRunInline ">
+				<label>Created</label>
+				<input type="text" id="created" name="created" readonly/>
+			</div>
+			<div class="shortInput postRunInline">
+				<label>Run Time</label>
+				<input type="text" id="runTime" name="runTime" readonly/>
+			</div>
+			<!-- Model Specific Inputs -->
+			<div class="shortInput">
+				<label>Feeder</label>
+				<button id="feederButton" type="button" onclick="javascript:editFeeder(allInputData.modelName,1);" style="display:block;width:125px;">Open Editor</button>
+				<input type="text" id="feederName1" name="feederName1" value="{{allInputDataDict.feederName1}}" style="display:none">
+			</div>
+			<hr>
+			<div class="wideInput">
+				<p class="inputSectionHeader">EV Battery and Charging Information</p>
+			</div>
+			<hr>
+			<div class="shortInput">
+				<label class="tooltip">Battery 1 Capacity (kWh)<span class="classic">Enter capacity in kWh.</span></label>
+				<input type="text" id="b1Cap" name="b1Cap" required="required" placeholder="25"/>
+			</div>
+			<div class="shortInput">
+				<label class="tooltip">Battery 1 Charging Voltage<span class="classic">Enter charging voltage as an integer.</span></label>
+				<input type="text" id="b1volts" name="b1volts" required="required" placeholder="120"/>
+			</div>
+			<br>
+			<div class="shortInput">
+				<label class="tooltip">Battery 2 Capacity (kWh)<span class="classic">Enter capacity in kWh.</span></label>
+				<input type="text" id="b2Cap" name="b2Cap" required="required" placeholder="25"/>
+			</div>
+			<div class="shortInput">
+				<label class="tooltip">Battery 2 Charging Voltage<span class="classic">Enter charging voltage as an integer.</span></label>
+				<input type="text" id="b2volts" name="b2volts" required="required" placeholder="240"/>
+			</div>
+			<br>
+			<div class="shortInput">
+				<label class="tooltip">Battery 3 Capacity (kWh)<span class="classic">Enter capacity in kWh.</span></label>
+				<input type="text" id="b3Cap" name="b3Cap" required="required" placeholder="62"/>
+			</div>
+			<div class="shortInput">
+				<label class="tooltip">Battery 3 Charging Voltage<span class="classic">Enter charging voltage as an integer.</span></label>
+				<input type="text" id="b3volts" name="b3volts" required="required" placeholder="120"/>
+			</div>
+			<br>
+			<div class="shortInput">
+				<label class="tooltip">Battery 4 Capacity (kWh)<span class="classic">Enter capacity in kWh.</span></label>
+				<input type="text" id="b4Cap" name="b4Cap" required="required" placeholder="62"/>
+			</div>
+			<div class="shortInput">
+				<label class="tooltip">Battery 4 Charging Voltage<span class="classic">Enter charging voltage as an integer.</span></label>
+				<input type="text" id="b4volts" name="b4volts" required="required" placeholder="240"/>
+			</div>
+			<br>
+			<div class="shortInput">
+				<label class="tooltip">Battery 5 Capacity (kWh)<span class="classic">Enter capacity in kWh.</span></label>
+				<input type="text" id="b5Cap" name="b5Cap" required="required" placeholder="100"/>
+			</div>
+			<div class="shortInput">
+				<label class="tooltip">Battery 5 Charging Voltage<span class="classic">Enter charging voltage as an integer.</span></label>
+				<input type="text" id="b5volts" name="b5volts" required="required" placeholder="630"/>
+			</div>
+
+			<!-- Required Buttons -->
+			<div class="wideInput" style="text-align:right">
+				<button id="deleteButton" type="button" class="stoppedInline postRunInline" onclick="deleteModel()">Delete</button>
+				<button id="shareButton" type="button" class="postRunInline" onclick="shareModel()">Share</button>
+				<button id="duplicateButton" type="button" class="postRunInline" onclick="duplicateModel()">Duplicate</button>
+				<button id="runButton" class="stoppedInline postRunInline" type="submit">Run Model</button>
+			</div>
+		</form>
+	</div>
+	<div id ="stopIndicator" class="content stopped" style="visibility: hidden">
+		<pre id='errorText' style='overflow-x:scroll'></pre>
+		<script type="text/javascript">
+		if (typeof(allInputData.stderr) !== 'undefined') {
+			gebi('stopIndicator').style.visibility = 'visible'
+			gebi('errorText').innerHTML = 'MODEL ENCOUNTERED AN ERROR AS FOLLOWS: \n\n' + allInputData.stderr}
+		</script>
+	</div>
+	<!-- Output tables, graphs, etc -->
+	<div id="output" class="postRun">
+
+		<p class="reportTitle postRun" style="page-break-before:always">Battery State of Charge</p>
+		<div id="battery0SOCPlotly" class="tightContent">
+			<script>
+				Plotly.newPlot('battery0SOCPlotly', JSON.parse(allOutputData['battery0SOCData']), JSON.parse(allOutputData['battery0SOCLayout']) || {});
+			</script>
+		</div>
+		<div id="battery1SOCPlotly" class="tightContent">
+			<script>
+				Plotly.newPlot('battery1SOCPlotly', JSON.parse(allOutputData['battery1SOCData']), JSON.parse(allOutputData['battery1SOCLayout']) || {});
+			</script>
+		</div>
+		<div id="battery2SOCPlotly" class="tightContent">
+			<script>
+				Plotly.newPlot('battery2SOCPlotly', JSON.parse(allOutputData['battery2SOCData']), JSON.parse(allOutputData['battery2SOCLayout']) || {});
+			</script>
+		</div>
+		<div id="battery3SOCPlotly" class="tightContent">
+			<script>
+				Plotly.newPlot('battery3SOCPlotly', JSON.parse(allOutputData['battery3SOCData']), JSON.parse(allOutputData['battery3SOCLayout']) || {});
+			</script>
+		</div>
+		<div id="battery4SOCPlotly" class="tightContent">
+			<script>
+				Plotly.newPlot('battery4SOCPlotly', JSON.parse(allOutputData['battery4SOCData']), JSON.parse(allOutputData['battery4SOCLayout']) || {});
+			</script>
+		</div>
+
+		<p class="reportTitle postRun" style="page-break-before:always">Instantaneous Power Draw</p>
+		<div id="powerDrawPlotly" class="tightContent">
+			<script>
+				Plotly.newPlot('powerDrawPlotly', JSON.parse(allOutputData['powerDrawData']), JSON.parse(allOutputData['powerDrawLayout']) || {});
+			</script>
+		</div>
+	</div>
+	{{ omfRunDebugBlock }}
+</body>

@@ -1,0 +1,7 @@
+{
+    "name": "helicsBattery",
+    "coreType": "zmq",
+    "period": 60,
+    "logfile": "helicsTest.log",
+    "observer": true
+}
