@@ -1,0 +1,18 @@
+{
+  "broker": true,
+  "federates": [
+    {
+      "directory": ".",
+      "exec": "gridlabd Microgrid.glm",
+      "host": "localhost",
+      "name": "gld_fed"
+    },
+    {
+      "directory": ".",
+      "exec": "python Recorder_fed.py",
+      "host": "localhost",
+      "name": "Recorder_fed"
+    }
+  ],
+  "name": "Microgrid"
+}

@@ -1,0 +1,107 @@
+{
+    "name": "gld_fed",
+    "coreType": "zmq",
+    "logfile": "output.log",
+    "publications": [
+        {
+            "global": false,
+            "key": "gld_simulation_clock",
+            "type": "string",
+            "info": {
+                "object": "global",
+                "property": "clock"
+            }
+        },
+        {
+             "global" : false,
+             "key" : "gen1_frequency",
+             "type" : "double",
+             "info" : {
+                  "object" : "Gen1",
+                  "property" : "rotor_speed"
+             }
+        }
+    ],
+    "subscriptions": [
+        {
+            "key": "Recorder_fed/diesel_switch_status",
+            "type": "string",
+            "info": "{\"object\" : \"Diesel_Switch_1\", \"property\" : \"status\"}"
+        },
+        {
+            "key": "Recorder_fed/main_switch_status",
+            "type": "string",
+            "info": "{\"object\" : \"1491-149\", \"property\" : \"status\"}"
+        },
+        {
+            "key": "Recorder_fed/load_82",
+            "type": "complex",
+            "info": "{\"object\" : \"82\", \"property\" : \"constant_power_C\"}"
+        },
+        {
+            "key": "Recorder_fed/load_83",
+            "type": "complex",
+            "info": "{\"object\" : \"83\", \"property\" : \"constant_power_C\"}"
+        },
+        {
+            "key": "Recorder_fed/load_84",
+            "type": "complex",
+            "info": "{\"object\" : \"84\", \"property\" : \"constant_power_C\"}"
+        },
+        {
+            "key": "Recorder_fed/load_85",
+            "type": "complex",
+            "info": "{\"object\" : \"85\", \"property\" : \"constant_power_C\"}"
+        },
+        {
+            "key": "Recorder_fed/load_86",
+            "type": "complex",
+            "info": "{\"object\" : \"86\", \"property\" : \"constant_power_B\"}"
+        },
+        {
+            "key": "Recorder_fed/load_87",
+            "type": "complex",
+            "info": "{\"object\" : \"87\", \"property\" : \"constant_power_B\"}"
+        },
+        {
+            "key": "Recorder_fed/load_88",
+            "type": "complex",
+            "info": "{\"object\" : \"88\", \"property\" : \"constant_power_B\"}"
+        },
+        {
+            "key": "Recorder_fed/load_90",
+            "type": "complex",
+            "info": "{\"object\" : \"90\", \"property\" : \"constant_power_B\"}"
+        },
+        {
+            "key": "Recorder_fed/load_92",
+            "type": "complex",
+            "info": "{\"object\" : \"92\", \"property\" : \"constant_power_B\"}"
+        },
+        {
+            "key": "Recorder_fed/load_94",
+            "type": "complex",
+            "info": "{\"object\" : \"94\", \"property\" : \"constant_power_B\"}"
+        },
+        {
+            "key": "Recorder_fed/load_95",
+            "type": "complex",
+            "info": "{\"object\" : \"95\", \"property\" : \"constant_power_B\"}"
+        },
+        {
+            "key": "Recorder_fed/load_96",
+            "type": "complex",
+            "info": "{\"object\" : \"96\", \"property\" : \"constant_power_B\"}"
+        },
+        {
+            "key": "Recorder_fed/load_98",
+            "type": "complex",
+            "info": "{\"object\" : \"98\", \"property\" : \"constant_power_B\"}"
+        },
+        {
+            "key": "Recorder_fed/load_99",
+            "type": "complex",
+            "info": "{\"object\" : \"99\", \"property\" : \"constant_power_B\"}"
+        }
+    ]
+}

@@ -1,0 +1,83 @@
+{
+    "name": "Recorder_fed",
+    "coreType": "zmq",
+    "logfile": "Recorder_fed.log",
+    "wait_for_current_time_update": true,
+    "terminate_on_error": true,
+    "publications": [
+        {
+            "key": "diesel_switch_status",
+            "type": "string"
+        },
+        {
+            "key": "main_switch_status",
+            "type": "string"
+        },
+        {
+            "key": "load_82",
+            "type": "complex"
+        },
+        {
+            "key": "load_83",
+            "type": "complex"
+        },
+        {
+            "key": "load_84",
+            "type": "complex"
+        },
+        {
+            "key": "load_85",
+            "type": "complex"
+        },
+        {
+            "key": "load_86",
+            "type": "complex"
+        },
+        {
+            "key": "load_87",
+            "type": "complex"
+        },
+        {
+            "key": "load_88",
+            "type": "complex"
+        },
+        {
+            "key": "load_90",
+            "type": "complex"
+        },
+        {
+            "key": "load_92",
+            "type": "complex"
+        },
+        {
+            "key": "load_94",
+            "type": "complex"
+        },
+        {
+            "key": "load_95",
+            "type": "complex"
+        },
+        {
+            "key": "load_96",
+            "type": "complex"
+        },
+        {
+            "key": "load_98",
+            "type": "complex"
+        },
+        {
+            "key": "load_99",
+            "type": "complex"
+        }
+    ],
+    "subscriptions": [
+        {
+            "key": "gld_fed/gld_simulation_clock",
+            "type": "string"
+        },
+        {
+            "key": "gld_fed/gen1_frequency",
+            "type": "double"
+        }
+    ]
+}
