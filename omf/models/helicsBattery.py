@@ -27,7 +27,7 @@ hidden = False
 
 fileTime = "chargerData_Time.csv"
 filePower = "chargeData_Power.csv"
-runnerPath = "/home/ananth/code/HELICS-Examples/user_guide_examples/fundamental/fundamental_default/"
+runnerPath = "../helicsModels/Battery/"
 runnerFile = "fundamental_default_runner.json"
 
 logger = logging.getLogger(__name__)

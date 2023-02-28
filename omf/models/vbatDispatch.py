@@ -15,6 +15,7 @@ from omf.models.__neoMetaModel__ import *
 # Model metadata:
 modelName, template = __neoMetaModel__.metadata(__file__)
 tooltip = "Calculate the energy storage capacity for a collection of thermostatically controlled loads."
+hidden = True
 
 def pyVbat(modelDir, i):
 	vbType = i['load_type']
