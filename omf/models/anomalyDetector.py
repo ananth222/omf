@@ -14,7 +14,7 @@ from omf.models.__neoMetaModel__ import *
 # Model metadata:
 modelName, template = __neoMetaModel__.metadata(__file__)
 tooltip = ('Detect anomalies in meter data.')
-hidden = False
+hidden = True
 
 def workProphet(modelDir, inputDict):
 	'''

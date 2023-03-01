@@ -1,7 +1,15 @@
 {
-    "created": "2017-10-11 16:10:33.344052", 
-    "layoutAlgorithm": "forceDirected", 
-    "modelType": "voltageDrop", 
-    "feederName1": "ieee9bus", 
-    "runTime": "0:00:00"
+    "modelType": "voltageDrop",
+    "created": "2017-10-11 16:10:33.344052",
+    "runTime": "0:00:00",
+    "feederName1": "ieee9bus",
+    "layoutAlgorithm": "forceDirected",
+    "nodeCol": "Voltage",
+    "edgeCol": "Current",
+    "nodeLabs": "Name",
+    "edgeLabs": "Name",
+    "customColormap": "False",
+    "rezSqIn": "2",
+    "runStartTime": "2023-02-28T09:59:48.169794",
+    "stderr": "Traceback (most recent call last):\n  File \"/home/ananth/code/NRECA/HELICS/omf/omf/models/__neoMetaModel__.py\", line 51, in heavyProcessing\n    outData = work(modelDir, inputDict)\n  File \"/home/ananth/code/NRECA/HELICS/omf/omf/models/voltageDrop.py\", line 69, in work\n    customColormapValue = False\n  File \"/home/ananth/code/NRECA/HELICS/omf/omf/models/voltageDrop.py\", line 284, in drawPlot\n    raise Exception('GridLAB-D failed to run with the following errors:\\n' + gridlabOut['stderr'])\nFileNotFoundError: [Errno 2] No such file or directory: '/home/ananth/code/NRECA/HELICS/omf/omf/data/Model/public/Demo GridLABD Transmission System/currDump.csv'\n"
 }

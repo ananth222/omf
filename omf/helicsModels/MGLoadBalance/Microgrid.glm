@@ -48,8 +48,8 @@ module generators {
 
 
 #include "Diesels.glm"
-//#include "Inverters.glm"
-#include "IEEE-123_Inverters.glm"
+#include "Inverters.glm"
+//#include "IEEE-123_Inverters.glm"
 
 //Fault check option
 object fault_check {

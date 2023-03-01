@@ -26,7 +26,7 @@ modelName, template = __neoMetaModel__.metadata(__file__)
 tooltip = ('The derInterconnection model runs the key modelling and analysis steps involved '
 	'in a DER Impact Study including Load Flow computations, Short Circuit analysis, '
 	'and Effective Grounding screenings.')
-#hidden = True
+hidden = True
 
 def work(modelDir, inputDict):
 	''' Run the model in its directory. '''

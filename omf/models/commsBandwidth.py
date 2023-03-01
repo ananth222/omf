@@ -11,7 +11,7 @@ from omf.models.__neoMetaModel__ import *
 # Model metadata:
 tooltip = "Calculate the bandwidth requirements for a communications system on a feeder"
 modelName, template = __neoMetaModel__.metadata(__file__)
-hidden = False
+hidden = True
 
 def work(modelDir, inputDict):
 	outData = {}

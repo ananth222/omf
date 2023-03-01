@@ -25,7 +25,7 @@ except Exception as e:
 # Model metadata:
 modelName, template = __neoMetaModel__.metadata(__file__)
 tooltip = "The Disaggregation model performs analysis to appliance level power consumption given a site meter."
-hidden = False
+hidden = True
 
 def work(modelDir, inputDict):
 	''' Run the model in its directory. '''

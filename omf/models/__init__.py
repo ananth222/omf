@@ -46,3 +46,5 @@ from omf.models import outageCost
 from omf.models import faultAnalysis
 from omf.models import vbatStacked
 from omf.models import disaggregation
+from omf.models import helicsBattery
+from omf.models import helicsMGLoadBalance

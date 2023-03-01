@@ -3,7 +3,7 @@ from time import time
 import warnings
 # warnings.filterwarnings("ignore")
 
-import shutil, datetime
+import shutil, datetime, json, csv
 from os.path import join as pJoin
 import subprocess
 import numpy as np
@@ -29,9 +29,10 @@ modelName, template = __neoMetaModel__.metadata(__file__)
 tooltip = 'Simple Microgrid in HELICS'
 hidden = False
 
-runnerPath = "/home/ananth/code/NRECA/HELICS/LoadShedding/"
+runnerPath = "helicsModels/MGLoadBalance/"
 runnerFile = "helics_runner.json"
 gen1DataFile = runnerPath + "output/Gen_1_Speed.csv"
+setupFile = runnerPath + "simsetup.json"
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG,filename='helicsMG.log')
@@ -52,15 +53,45 @@ def work(modelDir, inputDict):
 	writer.writerow(newRow)
 	outputFile.close()
 	
-	args = ("helics", "run", f"--path={runnerPath + runnerFile}")
-	#proc = subprocess.Popen(args, stdout=subprocess.PIPE)
-
 	grantedtime = 0
 	update_interval = 1
 	hours = 2
 	#total_interval = int(60 * 60 * hours)
-	total_interval = 20
+	total_interval = 10
 	observing = False	
+
+	loadList = inputDict.get("loadShed")
+
+	setupJSON = {
+				"total_interval": 10,
+				"dcOutTime": 3,
+				"loads": [ ],
+				"check_freq_per": 0.1,
+				"check_freq_drop": 0.1
+				}
+	setupJSON["total_interval"] = total_interval
+	setupJSON["dcOutTime"] = float(dcOutTime)
+	setupJSON["loads"] = list(loadList.split(','))
+	setupJSON["check_freq_per"] = float(inputDict.get("check_freq_per", 0.1))
+	setupJSON["check_freq_drop"] = float(inputDict.get("check_freq_drop", 0.1))
+
+	with open(setupFile, 'w') as f:
+		json.dump(setupJSON, f)
+
+	args = ("helics", "run", f"--path={runnerPath + runnerFile}")
+	proc = subprocess.Popen(args, stdout=subprocess.PIPE)
+	while proc.poll() is None:
+		#time.sleep(0.1)
+		if observing:
+			#print(f'Waiting for co-sim at time {grantedtime}...')
+			requested_time = (grantedtime + update_interval)
+			#grantedtime = h.helicsFederateRequestTime(fed, h.helics_time_maxtime)
+			#logger.info(f'Waiting in cosim at time {grantedtime}.')
+			if grantedtime >= h.helics_time_maxtime:
+				print(f'Trying to kill fed.')
+				observing = False
+				#destroy_federate(fed)
+
 	output = ""
 	print("Proc output is: "+output)
 	outData["output"] = output
@@ -142,7 +173,7 @@ def work(modelDir, inputDict):
 			y=1.25,
 			orientation="h")
 		)
-	for i in [1,2,3]:
+	'''for i in [1,2,3]:
 		dgen =  pd.read_csv(f"{runnerPath}output/Gen_{i}_meter.csv", skiprows=8, parse_dates=['# timestamp'])
 		dgenPlot = go.Scatter(
 			x=dgen['# timestamp'],
@@ -150,7 +181,7 @@ def work(modelDir, inputDict):
 			#line=dict( color=('blue') ),
 			name=f"Diesel {i}")
 		plotData.append(dgenPlot)
-
+	'''
 
 	plotlyLayoutPower['yaxis'].update(title=f'Active Power (kW)')
 	plotlyLayoutPower['xaxis'].update(title='Time')
@@ -194,7 +225,7 @@ def new(modelDir):
 
 def runtimeEstimate(modelDir):
 	''' Estimated runtime of model in minutes. '''
-	return 1.0
+	return 2.0
 
 @neoMetaModel_test_setup
 def _tests():

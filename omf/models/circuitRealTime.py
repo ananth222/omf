@@ -8,7 +8,7 @@ from omf.models.__neoMetaModel__ import *
 # Model metadata:
 modelName, template = __neoMetaModel__.metadata(__file__)
 tooltip = 'Real time circuit simulator'
-
+hidden = True
 def work(modelDir, inputDict):
 	''' Run the model in its directory. '''
 	# Stdout/stderr.

@@ -38,19 +38,19 @@
 			</div>
 			<div class="shortInput">
 				<label>Model Name</label>
-				<input type="text" id="modelName" name="modelName" pattern="^[\w\s\d\.-]+$" required="required">
+				<input type="text" id="modelName" name="modelName" value="{{allInputDataDict.modelName}}" pattern="^[\w\s\d\.-]+$" required="required">
 			</div>
 			<div class="shortInput runningInline postRunInline">
 				<label>User</label>
-				<input type="text" id="user" name="user" readonly/>
+				<input type="text" id="user" name="user" value="{{allInputDataDict.user}}" readonly/>
 			</div>
 			<div class="shortInput runningInline postRunInline ">
 				<label>Created</label>
-				<input type="text" id="created" name="created" readonly/>
+				<input type="text" id="created" name="created" value="{{allInputDataDict.created}}" readonly/>
 			</div>
 			<div class="shortInput postRunInline">
 				<label>Run Time</label>
-				<input type="text" id="runTime" name="runTime" readonly/>
+				<input type="text" id="runTime" name="runTime" value="{{allInputDataDict.runTime}}" readonly/>
 			</div>
 			<!-- Model Specific Inputs -->
 			<div class="shortInput">
@@ -65,17 +65,17 @@
 			<hr>
 			<div class="shortInput">
 				<label class="tooltip">Prioritized list of loads to shed (.csv file)<span class="classic">Please enter the name of a .csv file representing the hourly load shape.</span></label>
-				<input id="loadShapeFile" type="file" style="display:none" onchange="handle_files(this.files,'loadShape','fileName')">
-				<input id="loadShape" name="loadShape" type="hidden">
+				<input id="loadShedFile" type="file" style="display:none" onchange="handle_files(this.files,'loadShed','fileName')">
+				<input id="loadShed" name="loadShed" value="{{allInputDataDict.loadShed}}" type="hidden">
 				<div>
-					<label for="loadShapeFile" class="fileButton">Choose File</label>
-					<input id="fileName" name="fileName" readonly class="uploadFileName">	
+					<label for="loadShedFile" class="fileButton">Choose File</label>
+					<input id="fileName" name="fileName" readonly class="uploadFileName" value="{{allInputDataDict.fileName}}">	
 				</div>
 			</div>
 
 			<div class="shortInput">
 				<label class="tooltip">Outage Time (seconds)<span class="classic">Diesel Disconnect Time</span></label>
-				<input type="text" id="dcOut" name="dcOut" required="required" placeholder="3"/>
+				<input type="text" id="dcOut" name="dcOut" required="required" placeholder="3" value="{{allInputDataDict.dcOut}}"/>
 			</div>
 			<div class="shortInput">
 				<label class="tooltip">Strategy<span class="classic">Microgrid Balancing Strategy</span></label>
@@ -86,12 +86,12 @@
 			</div>
 			<div class="shortInput">
 				<label class="tooltip">Check Interval<span class="classic">Interval to check frquency drop</span></label>
-				<input type="text" id="check_freq_per" name="check_freq_per" required="required" placeholder="0.1"/>
+				<input type="text" id="check_freq_per" name="check_freq_per" required="required" placeholder="0.1" value="{{allInputDataDict.check_freq_per}}"/>
 			</div>
 
 			<div class="shortInput">
 				<label class="tooltip">Check Range<span class="classic">Range frequency is allowed to drop before shedding load</span></label>
-				<input type="text" id="check_freq_drop" name="check_freq_drop" required="required" placeholder="0.1"/>
+				<input type="text" id="check_freq_drop" name="check_freq_drop" required="required" placeholder="0.1" value="{{allInputDataDict.check_freq_drop}}"/>
 			</div>
 
 			<!-- Required Buttons -->

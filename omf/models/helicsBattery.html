@@ -38,19 +38,19 @@
 			</div>
 			<div class="shortInput">
 				<label>Model Name</label>
-				<input type="text" id="modelName" name="modelName" pattern="^[\w\s\d\.-]+$" required="required">
+				<input type="text" id="modelName" name="modelName" value="{{allInputDataDict.modelName}}" pattern="^[\w\s\d\.-]+$" required="required">
 			</div>
 			<div class="shortInput runningInline postRunInline">
 				<label>User</label>
-				<input type="text" id="user" name="user" readonly/>
+				<input type="text" id="user" name="user" value="{{allInputDataDict.user}}" readonly/>
 			</div>
 			<div class="shortInput runningInline postRunInline ">
 				<label>Created</label>
-				<input type="text" id="created" name="created" readonly/>
+				<input type="text" id="created" name="created" value="{{allInputDataDict.created}}" readonly/>
 			</div>
 			<div class="shortInput postRunInline">
 				<label>Run Time</label>
-				<input type="text" id="runTime" name="runTime" readonly/>
+				<input type="text" id="runTime" name="runTime" value="{{allInputDataDict.runTime}}" readonly/>
 			</div>
 			<!-- Model Specific Inputs -->
 			<div class="shortInput">
@@ -65,47 +65,47 @@
 			<hr>
 			<div class="shortInput">
 				<label class="tooltip">Battery 1 Capacity (kWh)<span class="classic">Enter capacity in kWh.</span></label>
-				<input type="text" id="b1Cap" name="b1Cap" required="required" placeholder="25"/>
+				<input type="text" id="b1Cap" name="b1Cap" required="required" placeholder="25" value="{{allInputDataDict.b1Cap}}"/>
 			</div>
 			<div class="shortInput">
 				<label class="tooltip">Battery 1 Charging Voltage<span class="classic">Enter charging voltage as an integer.</span></label>
-				<input type="text" id="b1volts" name="b1volts" required="required" placeholder="120"/>
+				<input type="text" id="b1volts" name="b1volts" required="required" placeholder="120" value="{{allInputDataDict.b1volts}}"/>
 			</div>
 			<br>
 			<div class="shortInput">
 				<label class="tooltip">Battery 2 Capacity (kWh)<span class="classic">Enter capacity in kWh.</span></label>
-				<input type="text" id="b2Cap" name="b2Cap" required="required" placeholder="25"/>
+				<input type="text" id="b2Cap" name="b2Cap" required="required" placeholder="25" value="{{allInputDataDict.b2Cap}}"/>
 			</div>
 			<div class="shortInput">
 				<label class="tooltip">Battery 2 Charging Voltage<span class="classic">Enter charging voltage as an integer.</span></label>
-				<input type="text" id="b2volts" name="b2volts" required="required" placeholder="240"/>
+				<input type="text" id="b2volts" name="b2volts" required="required" placeholder="240" value="{{allInputDataDict.b2volts}}"/>
 			</div>
 			<br>
 			<div class="shortInput">
 				<label class="tooltip">Battery 3 Capacity (kWh)<span class="classic">Enter capacity in kWh.</span></label>
-				<input type="text" id="b3Cap" name="b3Cap" required="required" placeholder="62"/>
+				<input type="text" id="b3Cap" name="b3Cap" required="required" placeholder="62" value="{{allInputDataDict.b3Cap}}"/>
 			</div>
 			<div class="shortInput">
 				<label class="tooltip">Battery 3 Charging Voltage<span class="classic">Enter charging voltage as an integer.</span></label>
-				<input type="text" id="b3volts" name="b3volts" required="required" placeholder="120"/>
+				<input type="text" id="b3volts" name="b3volts" required="required" placeholder="120" value="{{allInputDataDict.b3volts}}"/>
 			</div>
 			<br>
 			<div class="shortInput">
 				<label class="tooltip">Battery 4 Capacity (kWh)<span class="classic">Enter capacity in kWh.</span></label>
-				<input type="text" id="b4Cap" name="b4Cap" required="required" placeholder="62"/>
+				<input type="text" id="b4Cap" name="b4Cap" required="required" placeholder="62" value="{{allInputDataDict.b4Cap}}"/>
 			</div>
 			<div class="shortInput">
 				<label class="tooltip">Battery 4 Charging Voltage<span class="classic">Enter charging voltage as an integer.</span></label>
-				<input type="text" id="b4volts" name="b4volts" required="required" placeholder="240"/>
+				<input type="text" id="b4volts" name="b4volts" required="required" placeholder="240" value="{{allInputDataDict.b4volts}}"/>
 			</div>
 			<br>
 			<div class="shortInput">
 				<label class="tooltip">Battery 5 Capacity (kWh)<span class="classic">Enter capacity in kWh.</span></label>
-				<input type="text" id="b5Cap" name="b5Cap" required="required" placeholder="100"/>
+				<input type="text" id="b5Cap" name="b5Cap" required="required" placeholder="100" value="{{allInputDataDict.b5Cap}}"/>
 			</div>
 			<div class="shortInput">
 				<label class="tooltip">Battery 5 Charging Voltage<span class="classic">Enter charging voltage as an integer.</span></label>
-				<input type="text" id="b5volts" name="b5volts" required="required" placeholder="630"/>
+				<input type="text" id="b5volts" name="b5volts" required="required" placeholder="630" value="{{allInputDataDict.b5volts}}"/>
 			</div>
 
 			<!-- Required Buttons -->

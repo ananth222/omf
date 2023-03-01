@@ -20,9 +20,9 @@ setup(
 	version = '1.0.0',
 	description = 'An Open Modeling Framework (omf) for power systems simulation.',
 	long_description = __doc__,
-	author = 'David Pinney',
-	author_email = 'david.pinney@nreca.coop',	
-	url = 'http://github.com/dpinney/omf/',
+	author = 'David Pinney, Anantha Narayanan',
+	author_email = 'anantha.narayanan@nreca.coop',	
+	url = 'http://github.com/ananth222/omf/',
 	packages = ['omf'],
 	include_package_data=True,
 	classifiers=[

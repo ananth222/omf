@@ -3,7 +3,7 @@ from time import time
 import warnings
 # warnings.filterwarnings("ignore")
 
-import shutil, datetime
+import shutil, datetime, os
 from os.path import join as pJoin
 import subprocess
 import numpy as np
@@ -27,10 +27,13 @@ hidden = False
 
 fileTime = "chargerData_Time.csv"
 filePower = "chargeData_Power.csv"
-runnerPath = "../helicsModels/Battery/"
+#_myDir = os.path.dirname(os.path.abspath(__file__))
+#runnerPath = _myDir+"../helicsModels/Battery/"
+runnerPath = "helicsModels/Battery/"
 runnerFile = "fundamental_default_runner.json"
 
 logger = logging.getLogger(__name__)
+logger = logging.getLogger(runnerPath)
 logging.basicConfig(level=logging.DEBUG,filename='helicsBattery.log')
 
 def work(modelDir, inputDict):

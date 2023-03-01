@@ -27,7 +27,7 @@ from omf.models.__neoMetaModel__ import *
 # Model metadata:
 modelName, template = __neoMetaModel__.metadata(__file__)
 tooltip = "Injects faults in to circuits and measures fault currents, voltages, and protective device response."
-hidden = False
+hidden = True
 
 def work(modelDir, inputDict):
 	''' Run the model in its directory. '''
